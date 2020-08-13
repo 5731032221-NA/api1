@@ -9,6 +9,7 @@ const datetime = require('./library/datetime');
 const schema = require('./library/checkSchema');
 var mongo = require('./library/mongoconfig');
 const lookup_pm200mp = require('./library/lookup/lookup_pm200mp');
+const mqconfig = require('./library/mqconfig');
 
 const bodyParser = require('body-parser');
 
@@ -54,7 +55,7 @@ app.post('/cardtransaction', async function (req, res) {
 
     //MQ
     console.log("Start sending message to queue")
-    await publishToQueue.publishToQueue('JEFF',JSON.stringify(stringtosent));
+    await publishToQueue.publishToQueue(mqconfig.queuename,JSON.stringify(stringtosent));
     console.log("Sent to queue Successfully")
 
     //connect MongoDB
