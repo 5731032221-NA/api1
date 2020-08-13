@@ -15,8 +15,9 @@
 //    console.log(`Closing rabbitmq channel`);
 // });
 var amqp = require('amqplib/callback_api');
+const mqconfig = require('../library/mqconfig');
 let ch = null;
-amqp.connect('amqp://192.168.0.3', function(error0, connection) {
+amqp.connect(mqconfig.url, function(error0, connection) {
   if (error0) {
     throw error0;
   }
